@@ -1,30 +1,25 @@
 #include <stdio.h>
 
 int main() {
-
-    // this is my first program :)
-
-    /*
-    this is also  a 
-    comment
-    */
-
     int age = 25;
-    int year = 2025;
-    int quantity = 1;
-
-    float gpa = 2.5;
     float price = 19.99;
-    float temperature = -10.1;
+    double pi = 3.1415926535;
+    char currency = '$';
+    char name[] = "broski";
+    int num1 = 1;
+    int num2 = 19;
+    int num3 = 100;
+    
+    printf("%d\n", age);
+    printf("%f\n", price);
+    printf("%lf\n", pi);
+    printf("%c\n", currency);
+    printf("%s\n", name);
 
-    printf("price is %f \n", price);
-    printf("the temperature is %f celcius\n", temperature);
-    printf("your gpa %f \n", gpa);
+    printf("%4d\n",num1);
+    printf("%4d\n",num2);
+    printf("%4d\n",num1);
 
-    printf("you have ordered %d x items", quantity);
-    printf("year is %d  \n", year);
-    printf("you are %d years old\n", age);
-    printf("hello, world\n");
-    printf("diouf\n");
     return 0;
+
 }
