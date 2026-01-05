@@ -1,0 +1,6 @@
+# Windows
+*.exe
+
+# Linux / macOS (typical compiled binaries)
+*.out
+*.bin
