@@ -9,7 +9,7 @@ int main(){
     double a = 0.0;
     double c_i = 0.0;
 
-    printf("Enter principle (P): ");
+    printf("Enter principal (P): ");
     scanf("%lf",&p);
 
     printf("Enter # of year (t): ");
@@ -28,7 +28,7 @@ int main(){
     a = p*pow((1 + (r/n)),(n*t));
     c_i = a - p;
 
-    printf("After %d years the total will be %.3lf", t,a);
+    printf("After %d years the total will be $%.3lf", t,a);
 
     return 0;
 }
