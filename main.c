@@ -1,21 +1,19 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 
 int main() {
-    //pseudo-random
-    srand(time(NULL));
+    
+    int numbers[] = {10, 20, 30, 40, 50, 60};
+    char grades[]= {'A','B','C','D'};
+    char name[] = "Bro code";
 
-    // printf("%d", RAND_MAX);
-    // printf("%d", rand());
 
-    int min = 50;
-    int max = 100;
+    int numbers[] = {10, 20, 30, 40, 50, 60};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
 
-    int randomNum = (rand() % (max - min + 1)) + min;
+    for (int i = 0; i < size; i++) {
+        printf("%d\n",numbers[i]);
+    }
 
-    printf("%d",randomNum);
     return 0;
-
 
 }
