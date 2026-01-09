@@ -2,20 +2,22 @@
 
 int main() {
 
-    int numbers[5] = {0};
-    int size = sizeof(numbers) / sizeof(numbers[0]);
+    char numbers[][3] = {
+        {'1','2','3'},
+        {'4','5','6'},
+        {'7','8','9'},
+        {'*','0','#'}
+    };
 
-    for (int i = 0; i < size; i++) 
-    {
-        printf("Enter a value: ");
-        scanf("%d",&numbers[i]);
+    for (int i = 0; i < 4; i++){//rows
+        for (int j = 0 ; j < 3; j++){//colums
+            printf("%c ",numbers[i][j]);
+        }
+        printf("\n");
     }
 
-    for (int i = 0; i < size; i++) 
-    {
-        printf("%d\n");
-        
-    }
+    // int size = sizeof(numbers) / sizeof(numbers[0]);
+
 
 
     return 0;
