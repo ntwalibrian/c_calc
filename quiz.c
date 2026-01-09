@@ -1,16 +1,48 @@
 #include <stdio.h>
-#include <string.h>
+#include <ctype.h>
+
 
 int main() {
-    char name[3][25] = {0};
-    for (int i = 0 ; i < 3; i++) {
-        printf("Enter a name : ");
-        fgets(name[i], sizeof(name[i]),stdin);
-        name[i][strlen(name[i]) - 1] = '\0';
+
+    ///quiz game
+
+    char questions[][200] = {
+        "What is the largest planet in the solar system? ",
+        "What is the hottest planet? ",
+        "What planet has the most moons? "
+    };
+    char options[][100] = {
+        "A. Jupiter\nB. Saturn\nC. Uranus\nD. Neptune\n",
+        "A. Mercury\nB. Venus\nC. Earth\nD. Mars\n",
+        "A. Earth\nB. Mars\nC. Jupiter\nD. Saturn\n"
+
+    };
+    char answers[] = {
+        'A',
+        'B',
+        'C',
+    };
+
+    int points = 0;
+    char guess ='\0';
+    int questionsLen = sizeof(questions) / sizeof(questions[0]);
+
+    printf("***QUIZ GAME***\n");
+    for (int i = 0; i < questionsLen; i++) {
+        printf("\n%s\n",questions[i]);
+        printf("\n%s\n", options[i]);
+        printf("Enter your choice: ");
+        scanf(" %c",&guess);
+
+        if (guess == answers[i] || guess == tolower(answers[i])) {
+            printf("CORRECT\n");
+            points += 1 ;
+        } else {
+            printf("WRONG\n");
+        }
     }
-    for (int i = 0 ; i < 3; i++) {
-        printf("%s\n",name[i]);
-    }
+
+    printf("Your score is %d out of 3 points", points);
 
     return 0;
 }
