@@ -2,23 +2,10 @@
 
 int main() {
 
-    char numbers[][3] = {
-        {'1','2','3'},
-        {'4','5','6'},
-        {'7','8','9'},
-        {'*','0','#'}
-    };
-
-    for (int i = 0; i < 4; i++){//rows
-        for (int j = 0 ; j < 3; j++){//colums
-            printf("%c ",numbers[i][j]);
-        }
-        printf("\n");
-    }
-
-    // int size = sizeof(numbers) / sizeof(numbers[0]);
-
-
+    int x = 5;
+    int y = 6;
+    int max = (x >= y) ? x : y;
+    printf("%d", max);
 
     return 0;
 
