@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <ctype.h>
 
+typedef char String[200];
 
 int main() {
 
     ///quiz game
 
-    char questions[][200] = {
+    String questions[] = {
         "What is the largest planet in the solar system? ",
         "What is the hottest planet? ",
         "What planet has the most moons? "
     };
-    char options[][100] = {
+    String options[] = {
         "A. Jupiter\nB. Saturn\nC. Uranus\nD. Neptune\n",
         "A. Mercury\nB. Venus\nC. Earth\nD. Mars\n",
         "A. Earth\nB. Mars\nC. Jupiter\nD. Saturn\n"
