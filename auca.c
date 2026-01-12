@@ -26,6 +26,7 @@ typedef struct {
     bool filled; // to check if the struct is filled or not
 }Mark;
 
+const char *semesterNames[] = {"", "Fall", "Spring", "Summer"};
 bool isValidMark(int mark);
 bool isValidCredits(int credits);
 int isEmptySlot(const Mark *marks, int length);
@@ -37,7 +38,6 @@ int main() {
     Mark marks[50] = {0};
     int markCounter = 0;
     int size = sizeof(marks) / sizeof(marks[0]);
-    const char *semesterNames[] = {"", "Fall", "Spring", "Summer"};
 
     printf("***This is your gpa tracker app***\n");
 
@@ -55,16 +55,7 @@ int main() {
                 if(markCounter != -1 ){
                     printf("feature on the way writing at position %d\n",markCounter);
                     inputMark(&marks[markCounter]);
-                    printf("course: %s \n", marks[markCounter].courseCode);
-                    printf("course name: %s \n", marks[markCounter].courseName);
-                    printf("instructor name: %s \n", marks[markCounter].instructorName);
-                    printf("credits: %d \n", marks[markCounter].credits);
-                    printf("marks: %d \n", marks[markCounter].mark);
-                    printf("group: %c \n", marks[markCounter].group);
-                    printf("Academic year: %d - %d, Semester: %s\n", 
-                            marks[markCounter].academicYear.startYear, 
-                            marks[markCounter].academicYear.endYear,
-                            semesterNames[marks[markCounter].academicYear.semester]);
+                    printf("\nYou have successfully entered a course\n");
                 } else {
                     printf("No more space to store marks\n");
                 }
@@ -91,6 +82,19 @@ int isEmptySlot(const Mark *marks, int length) {
         } 
     }
     return -1; // array full
+}
+
+void printMark(Mark mark) {
+    printf("course: %s \n", mark.courseCode);
+    printf("course name: %s \n", mark.courseName);
+    printf("instructor name: %s \n", mark.instructorName);
+    printf("credits: %d \n", mark.credits);
+    printf("marks: %d \n", mark.mark);
+    printf("group: %c \n", mark.group);
+    printf("Academic year: %d - %d, Semester: %s\n", 
+        mark.academicYear.startYear, 
+        mark.academicYear.endYear,
+        semesterNames[mark.academicYear.semester]);
 }
 
 void inputMark(Mark *mark){
