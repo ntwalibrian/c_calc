@@ -47,8 +47,12 @@ int main() {
         switch(option) {
             case 1:
                 //going to do something latter
-                markCounter = isEmptySlot(marks,size);
-                printf("feature on the way writing at position %d\n",markCounter);
+                markCounter = isEmptySlot(&marks[0],size);
+                if(markCounter != -1 ){
+                    printf("feature on the way writing at position %d\n",markCounter);
+                } else {
+                    printf("No more space to store marks\n");
+                }
                 break;
             case 4:
                 printf("\nThanks for using us\n");
@@ -64,14 +68,19 @@ int main() {
 }
 
 int isEmptySlot(const Mark *marks, int length) { 
+
     for (int i = 0; i < length; i += 1) {
-        if(!marks[i].filled){
+        if(!(marks + i)->filled){
             // aka writable index
             return i;
         } 
     }
     return -1; // array full
-};
+}
+
+void inputMark(Mark *mark){
+
+}
 
 bool isValidMark(int mark) {
     return mark >= 0 && mark <= 20;
