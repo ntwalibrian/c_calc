@@ -31,10 +31,12 @@ bool isValidMark(int mark);
 bool isValidCredits(int credits);
 int isEmptySlot(const Mark *marks, int length);
 void inputMark(Mark *mark);
+void printMark(Mark mark);
 
 
 int main() {
     int option = 0;
+    int printOption = 0;
     Mark marks[50] = {0};
     int markCounter = 0;
     int size = sizeof(marks) / sizeof(marks[0]);
@@ -44,13 +46,14 @@ int main() {
     //input loop
     do {
         printf("\n1. Enter Marks\n");
+        printf("2. Print Mark\n");
         printf("4. Exit\n");
         printf("SELECT OPTION: ");
         scanf("%d",&option);
 
         switch(option) {
             case 1:
-                //going to do something latter
+                //get the first writable index
                 markCounter = isEmptySlot(&marks[0],size);
                 if(markCounter != -1 ){
                     printf("feature on the way writing at position %d\n",markCounter);
@@ -58,6 +61,19 @@ int main() {
                     printf("\nYou have successfully entered a course\n");
                 } else {
                     printf("No more space to store marks\n");
+                }
+                break;
+            case 2:
+                markCounter = isEmptySlot(&marks[0],size);
+                for (int i = 0 ; i < markCounter; i+= 1) {
+                    printf("%d. %s \n", i+1, marks[i].courseCode);
+                }
+                printf("Select course: ");
+                scanf("%d",&printOption);
+                if ( printOption > 0 && printOption <= markCounter) {
+                    printMark(marks[printOption - 1]);
+                } else {
+                    printf("incorrect choice retry \n");
                 }
                 break;
             case 4:
@@ -85,7 +101,7 @@ int isEmptySlot(const Mark *marks, int length) {
 }
 
 void printMark(Mark mark) {
-    printf("course: %s \n", mark.courseCode);
+    printf("\ncourse: %s \n", mark.courseCode);
     printf("course name: %s \n", mark.courseName);
     printf("instructor name: %s \n", mark.instructorName);
     printf("credits: %d \n", mark.credits);
