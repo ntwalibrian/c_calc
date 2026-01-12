@@ -28,7 +28,6 @@ typedef struct {
 
 bool isValidMark(int mark);
 bool isValidCredits(int credits);
-bool isValidAcademicYear(AcademicYear ay);
 int isEmptySlot(const Mark *marks, int length);
 void inputMark(Mark *mark);
 
@@ -183,8 +182,4 @@ bool isValidMark(int mark) {
 bool isValidCredits(int credits) {
     //will also validate inputs for the courses struct latter
     return credits >= 2 &&  credits <= 7;
-}
-
-bool isValidAcademicYear(AcademicYear ay) {
-    return ay.endYear == ay.startYear + 1;
 }
