@@ -27,12 +27,14 @@ typedef struct {
 bool isValidMark(int mark);
 bool isValidCredits(int credits);
 bool isValidAcademicYear(AcademicYear ay);
+int isEmptySlot(const Mark *marks, int length);
 
 
 int main() {
     int option = 0;
     Mark marks[50] = {0};
     int markCounter = 0;
+    int size = sizeof(marks) / sizeof(marks[0]);
     printf("***This is your gpa tracker app***\n");
 
     //input loop
@@ -45,7 +47,8 @@ int main() {
         switch(option) {
             case 1:
                 //going to do something latter
-                printf("feature on the way\n");
+                markCounter = isEmptySlot(marks,size);
+                printf("feature on the way writing at position %d\n",markCounter);
                 break;
             case 4:
                 printf("\nThanks for using us\n");
@@ -59,6 +62,16 @@ int main() {
 
     return 0;
 }
+
+int isEmptySlot(const Mark *marks, int length) { 
+    for (int i = 0; i < length; i += 1) {
+        if(!marks[i].filled){
+            // aka writable index
+            return i;
+        } 
+    }
+    return -1; // array full
+};
 
 bool isValidMark(int mark) {
     return mark >= 0 && mark <= 20;
