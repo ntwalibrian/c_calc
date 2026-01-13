@@ -1,60 +1,68 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-#define SIZE 2000
-
-
-typedef struct HashMap{
-    int key;  // the number in the array
-    int value; // index of the provided array 
-    struct HashMap* next; //next one with our exact hash index
-}HashMap;
-
-HashMap map[SIZE]; //setup the first hash 
-
-void put(int key, int value) {
-
-    int index = abs(key) % SIZE;
-    if (map[index].key == -1) {
-        map[index].key = key;
-        map[index].value = value;
-    } else {
-
-        HashMap* current = &map[index];
-        while (current->next != NULL) {
-            current = current->next;
-        }
-        current->next = malloc(sizeof(HashMap));
-        current->next->key = key;
-        current->next->value = value;
-        current->next->next = NULL;
-
-    }
-    
+# define PRIME_NUM 269
+struct Node {
+    int index;
+    struct Node *next;
+};
+int hash(int value) {
+    return abs((value%PRIME_NUM));
 }
-
-int get(int key) {
-    int index = abs(key) % SIZE;
-
-    HashMap* current = &map[index];
-    while(current != NULL && current->key != -1) {
-        if(current->key == key) {
-            return current->value;
-        }
-        current = current->next;
+void initHashtable(struct Node *ht){
+    for(int i = 0; i < PRIME_NUM; i++) {
+        ht[i].index = -1;
+        ht[i].next = NULL;
     }
+}
+int* two_sum(int* nums, int numsSize, int target, int* returnSize) {
+    *returnSize = 2;
+    int *result = (int *)malloc(*returnSize * sizeof(int));
+    struct Node *ht = (struct Node *) malloc(sizeof(struct Node) * PRIME_NUM);
+    initHashTable(ht);
+    //fill our hash table
+    for (int i = 0; i < numsSize; i++){
+        int hash_num = hash(nums[i]);
+        if(ht[hash_num].index == -1) {
+            //slot empty
+            ht[hash_num].index = i;
+        } else {
+            //slot is not empty
+            struct Node *new = (struct Node *) malloc(sizeof(struct Node));
+            new->index = i;
+            new->next = NULL;
+            struct Node *tmp = &ht[hash_num];
+            while ( tmp->next != NULL){
+                tmp = tmp->next;
+            }
+            tmp->next = new;
+        }
+    }
+    //check has table for corresponding pair
+    for (int i = 0; i < numsSize; i++) {
+        int hash_num = hash(target - nums[i]);
 
-    return -1;
-
+        if(ht[hash_num].index == -1) {
+            continue;
+        }
+        if(nums[ht[hash_num].index] == target - nums[i] && ht[hash_num].index != i){
+            result[0] = i;
+            result[1] = ht[hash_num].index;
+            return result;
+        } 
+        struct Node *tmp = ht[hash_num].next;
+        while(tmp != NULL){
+            if(nums[tmp->index] == target - nums[i] && tmp->index != i){
+                result[0] = i;
+                result[1] = tmp->index;
+                return result;
+            }
+            tmp = tmp->next;
+        }
+    }
+    return result;
 }
 
 int main() {
-
-    for (int i = 0; i < SIZE ; i++) {
-        map[i].key = -1;
-        map[i].value = -1;
-        map[i].next = NULL;
-    }
-
+    printf("Hello, World!\n");
     return 0;
 }
