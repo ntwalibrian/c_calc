@@ -114,7 +114,7 @@ void printMark(Mark mark) {
 }
 
 void inputMark(Mark *mark){
-    char courseCode[18] = "";
+    char courseCode[16] = "";
     char courseName[150] = "";
     char instructorName[50] = "";
     int credits = 0;
@@ -162,7 +162,15 @@ void inputMark(Mark *mark){
         printf("2. Spring (January-May)\n");
         printf("3. Summer (June-August)\n");
         printf("Select the semester: ");
-        scanf("%d",&semesterOption);
+
+        if (scanf("%d", &semesterOption) != 1) {
+            printf("Invalid input. Please enter a number.\n");
+
+            // clear invalid input
+            while (getchar() != '\n');
+            semesterOption = 0;
+            continue;
+        }
 
     } while (semesterOption <= 0 || semesterOption > 3);
 
@@ -170,6 +178,7 @@ void inputMark(Mark *mark){
     for (int i = 0; i < strlen(courseCode); i += 1) {
         mark->courseCode[i] = toupper(courseCode[i]);
     }
+    mark->courseCode[strlen(courseCode)] = '\0';
     strcpy(mark->courseName,courseName);
     strcpy(mark->instructorName,instructorName);
     mark->credits = credits;
@@ -203,3 +212,4 @@ bool isValidCredits(int credits) {
     //will also validate inputs for the courses struct latter
     return credits >= 2 &&  credits <= 7;
 }
+
