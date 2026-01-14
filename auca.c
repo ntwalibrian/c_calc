@@ -49,7 +49,7 @@ int main() {
         printf("2. Print Mark\n");
         printf("4. Exit\n");
         printf("SELECT OPTION: ");
-        scanf("%d",&option);
+        scanf("%d",&option); //error
 
         switch(option) {
             case 1:
@@ -69,7 +69,7 @@ int main() {
                     printf("%d. %s \n", i+1, marks[i].courseCode);
                 }
                 printf("Select course: ");
-                scanf("%d",&printOption);
+                scanf("%d",&printOption); // error 
                 if ( printOption > 0 && printOption <= markCounter) {
                     printMark(marks[printOption - 1]);
                 } else {
@@ -137,7 +137,7 @@ void inputMark(Mark *mark){
     instructorName[strlen(instructorName) - 1] = '\0';
 
     printf("Enter this courses credits: ");
-    scanf("%d",&credits);
+    scanf("%d",&credits);//error
     while(!isValidCredits(credits)){
         printf("Invalid credits, re-enter: ");
         scanf("%d",&credits);
@@ -147,14 +147,14 @@ void inputMark(Mark *mark){
     scanf("%d",&markValue);
     while(!isValidMark(markValue)){
         printf("Invalid marks, re-enter: ");
-        scanf("%d",&markValue);
+        scanf("%d",&markValue);//error
     }
 
     printf("Enter your group (A,B,C): ");
-    scanf(" %c",&group);
+    scanf(" %c",&group);//error
 
     printf("Enter the start year of your academic year (2024-): ");
-    scanf("%d",&startYear);
+    scanf("%d",&startYear);//error
 
     do {
         
@@ -170,7 +170,7 @@ void inputMark(Mark *mark){
             while (getchar() != '\n');
             semesterOption = 0;
             continue;
-        }
+        }//error
 
     } while (semesterOption <= 0 || semesterOption > 3);
 
